@@ -13,7 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			contacts: []
+			contacts: null,
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -57,20 +57,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getContacts: async () => {
 				try {
-					const response = await fetch("https://playground.4geeks.com/contact/agendas/AGNDev/contacts", {
-						method: "GET",
-						headers: { "Content-Type": "application/json" },
-					})
-					// console.log(response);
+					const response = await fetch("https://playground.4geeks.com/contact/agendas/AGNDev/contacts")
+					console.log(response);
 					if (response.status == 404) {
 						getActions().createAgenda();
 					}
 					const data = await response.json()
-					setStore({ contacts: data.contacts });
-					return true;
+					console.log(data);
+					if (response.ok) {
+						setStore({ contacts: data.contacts });
+					} else {
+						setStore({ contacts: false });
+					}
+
 				} catch (error) {
 					console.log("Error: ", error)
-					return false;
+					setStore({ contacts: false });
+
 				}
 			},
 
@@ -93,8 +96,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			updateContact: async (id, updatedContact) => {
+				// console.log(contact);
+				try {
+					const response = await fetch(`https://playground.4geeks.com/contact/agendas/AGNDev/contacts/${id}`, {
+						method: "PUT",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify(updatedContact)
+					})
+
+					const data = await response.json()
+					// console.log(data);
+					getActions().getContacts();
+					return true;
+				} catch (error) {
+					console.log("Error: ", error)
+					return false;
+				}
+			},
+
+			deleteContact: async (id) => {
+				try {
+					const response = await fetch(`https://playground.4geeks.com/contact/agendas/AGNDev/contacts/${id}`, {
+						method: "DELETE",
+					})
+
+					const data = await response;
+					// console.log(data);
+					getActions().getContacts();
+					return true;
+				} catch (error) {
+					console.log("Error: ", error)
+					return false;
+				}
+			},
 		}
-	};
+	}
 };
 
 export default getState;

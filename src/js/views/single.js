@@ -16,9 +16,15 @@ export const Single = () => {
     let formData = new FormData(e.target)
     let updatedContact = {}
     formData.forEach((val, key) => updatedContact[key] = val)
-    // console.log(updatedContact)
+    console.log(updatedContact)
     if (currentContact) {
-      await actions.updateContact(currentContact.id, updatedContact)
+      let resp = await actions.updateContact(currentContact.id, updatedContact)
+      if (resp) {
+        navigate("/")
+      }
+      else {
+        alert("Ups, algo salió mal !!")
+      }
     } else {
       let resp = await actions.createNewContact(updatedContact)
       if (resp) {
@@ -31,8 +37,12 @@ export const Single = () => {
   }
 
   useEffect(() => {
-    let contact = store.contacts.find(contact => contact.id == idContact)
-    setCurrentContact(contact)
+    if (store.contacts) {
+      if (store.contacts.length > 0 && idContact) {
+        let contact = store.contacts.find(contact => contact.id == idContact)
+        setCurrentContact(contact)
+      }
+    }
   }, [idContact, store.contacts])
 
   return (

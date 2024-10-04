@@ -1,5 +1,8 @@
-import React from "react"
+import React, { useContext } from "react"
+import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 const Contact = ({ id, name, phone, email, address }) => {
+    const { actions } = useContext(Context)
     return (
         <div className="d-flex justify-content-center">
             <div className="card mb-3" style={{ width: "540px", height: "200px" }}>
@@ -16,6 +19,16 @@ const Contact = ({ id, name, phone, email, address }) => {
                             <p className="card-text">{email}</p>
                             <p className="card-text">{address}</p>
                         </div>
+
+                        <Link to={`/edit/${id}`} className="btn btn-primary">
+                            <i className="fa-solid fa-pen-to-square"></i>
+                        </Link>
+
+                        <button onClick={() => actions.deleteContact(id)} className="btn btn-primary" type="submit">
+                            <i className="fas fa-trash-can"></i>
+                        </button>
+                        {/* //activar el action
+                    //Modal  */}
                     </div>
                 </div>
             </div>
