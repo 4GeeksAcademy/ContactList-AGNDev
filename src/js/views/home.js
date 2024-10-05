@@ -3,15 +3,18 @@ import { Context } from "../store/appContext";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import Contact from "../component/Contact";
+import { Navbar } from "../component/navbar";
+// import { Navbar } from "../component/navbar";
 
 
 const Home = () => {
 	const { store, actions } = useContext(Context);
 	//id, name, phone, email, address 
 	return (
-		<div className="text-center mt-5 container">
+		<div className="text-center container-fluid bg-white" style={{ width: "1024px" }}>
+			<Navbar />
 			{store.contacts == null ? <h1>Cargando contactos...</h1> :
-				store.contacts == false ? <h1>Ups, hubo un error</h1> :
+				store.contacts == false ? <h1>No hay contactos</h1> :
 					store.contacts && store.contacts.length > 0 && store.contacts.map((item) => (
 						<Contact
 							key={item.id}

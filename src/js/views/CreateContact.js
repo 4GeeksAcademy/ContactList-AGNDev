@@ -15,7 +15,6 @@ const CreateContact = () => {
             <input value={address} onChange={(e) => setAddress(e.target.value)} type="text" className="form-control my-2" name="address" placeholder="address" />
 
             <button className="btn btn-outline-success mt-2" type="submit" role="button" > Guardar contacto</button>
-
         </form>
     );
 }
