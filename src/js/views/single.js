@@ -46,7 +46,7 @@ export const Single = () => {
   }, [idContact, store.contacts])
 
   return (
-    <div className="jumbotron container bg-white" style={{ width: "1030px" }}>
+    <div className="jumbotron container bg-white mt-5" style={{ width: "1030px", height: "787px" }}>
       <h1 className="display-4 d-flex justify-content-center">{!currentContact ?
         "Add a new contact" :
         "Actualizando contacto " + currentContact.id
@@ -60,12 +60,11 @@ export const Single = () => {
           <label for="Full Name">Full Name</label>
           <input type="text" className="form-control  mt-1 my-3" name="name" placeholder="Full Name" />
           <label for="Enter Phone">Enter phone</label>
-          <input type="text" className="form-control mt-1 my-3" name="phone" placeholder="Enter phone" />
+          <input type="text" className="form-control mt-1 my-3 h1" name="phone" placeholder="Enter phone" />
           <label for="Enter Email">Enter Email</label>
           <input type="email" className="form-control mt-1 my-3" name="email" placeholder="Enter email" />
           <label for="Enter address<">Enter address</label>
           <input type="text" className="form-control mt-1 my-3" name="address" placeholder="Enter address" />
-
           <button className="btn btn-primary mt-1 container-fluid" type="submit" role="button" >Save</button>
           <Link to="/ ">
             <span className="navbar-brand mb-0 h1">or get back to contacts</span>
