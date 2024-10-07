@@ -11,7 +11,7 @@ const Home = () => {
 	const { store, actions } = useContext(Context);
 	//id, name, phone, email, address 
 	return (
-		<div className="text-center container-fluid bg-white" style={{ width: "1024px" }}>
+		<div className="text-center container-fluid bg-white pb-4" style={{ width: "1024px" }}>
 			<Navbar />
 			{store.contacts == null ? <h1>Cargando contactos...</h1> :
 				store.contacts == false ? <h1>No hay contactos</h1> :

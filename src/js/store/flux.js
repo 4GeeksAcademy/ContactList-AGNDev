@@ -116,6 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			deleteContact: async (id) => {
+				console.log(id)
 				try {
 					const response = await fetch(`https://playground.4geeks.com/contact/agendas/AGNDev/contacts/${id}`, {
 						method: "DELETE",
