@@ -58,12 +58,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getContacts: async () => {
 				try {
 					const response = await fetch("https://playground.4geeks.com/contact/agendas/AGNDev/contacts")
-					console.log(response);
+					// console.log(response);
 					if (response.status == 404) {
 						getActions().createAgenda();
 					}
 					const data = await response.json()
-					console.log(data);
+					// console.log(data);
 					if (response.ok) {
 						setStore({ contacts: data.contacts });
 					} else {

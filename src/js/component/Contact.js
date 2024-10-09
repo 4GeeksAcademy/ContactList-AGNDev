@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { Navbar } from "./navbar";
 const Contact = ({ id, name, phone, email, address }) => {
-    console.log(id)
+    // console.log(id)
     const { actions } = useContext(Context)
     return (
         <div className="container-fluid d-flex justify-content-center align-items-center bg-white" style={{ width: "1000px" }}>
@@ -17,9 +17,9 @@ const Contact = ({ id, name, phone, email, address }) => {
                     <div className="col-md-9 col-sm-12 d-flex">
                         <div className="card-body d-flex flex-column ps-0 letra">
                             <h5 className="card-title me-2 mb-3 mt-1 d-flex justify-content-start">{name}</h5>
-                            <p className="card-text me-2 d-flex justify-content-start"><i class="fa-solid fa-phone-flip me-2"></i>{phone} </p>
-                            <p className="card-text me-2  d-flex justify-content-start"><i class="fa-solid fa-envelope me-2"></i>{email}</p>
-                            <p className="card-text me-2 mt-0 d-flex justify-content-start"><i class="fa-solid fa-location-dot me-2"></i>{address}</p>
+                            <p className="card-text me-2 d-flex justify-content-start"><i className="fa-solid fa-phone-flip me-2"></i>{phone}</p>
+                            <p className="card-text me-2  d-flex justify-content-start"><i className="fa-solid fa-envelope me-2"></i>{email}</p>
+                            <p className="card-text me-2 mt-0 d-flex justify-content-start"><i className="fa-solid fa-location-dot me-2"></i>{address}</p>
                         </div>
                         <div className="d-flex justify-content-between mt-3">
                             <Link to={`/edit/${id}`} className="btn btn-white d-flex align-items-top">
@@ -31,10 +31,11 @@ const Contact = ({ id, name, phone, email, address }) => {
                             </button> */}
 
                             {/*Button de Bootstrap */}
-                            <button type="button" className="btn btn-white d-flex align-items-top" data-bs-toggle="modal" data-bs-target={`#exampleModal${id}`}>
+                            <button type="button" className="btn btn-white d-flex align-items-top" style={{ height: "25px" }}
+                                data-bs-toggle="modal" data-bs-target={`#exampleModal${id}`}>
                                 <i className="fas fa-trash-can"></i>
                             </button>
-                            <div className="modal fade" id={`exampleModal${id}`} tabindex="-1" aria-labelledby={`exampleModalLabel${id}`} aria-hidden="true">
+                            <div className="modal fade" id={`exampleModal${id}`} tabIndex="-1" aria-labelledby={`exampleModalLabel${id}`} aria-hidden="true">
                                 <div className="modal-dialog">
                                     <div className="modal-content">
                                         <div className="modal-header">
@@ -55,7 +56,7 @@ const Contact = ({ id, name, phone, email, address }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 export default Contact;
